@@ -61,14 +61,14 @@ router.get('/detail/:customerId', function (req, res, next) {
     .then((rows) => {
       let detail = rows[0];
       let customer = {};
-        customer.id = detail.id;
-        customer.first_name = detail.first_name;
-        customer.last_name = detail.last_name;
-        customer.sex = detail.sex;
-        customer.customer_type_id = detail.customer_type_id;
-        customer.image = detail.image ? detail.image.toString() : null;
-        customer.telephone = detail.telephone;
-        customer.email = detail.email;
+      customer.id = detail.id;
+      customer.first_name = detail.first_name;
+      customer.last_name = detail.last_name;
+      customer.sex = detail.sex;
+      customer.customer_type_id = detail.customer_type_id;
+      customer.image = detail.image ? detail.image.toString() : null;
+      customer.telephone = detail.telephone;
+      customer.email = detail.email;
       res.send({ ok: true, customer: customer });
     }, (error) => {
       res.send({ ok: false, error: error });
@@ -108,7 +108,7 @@ router.post('/', function (req, res, next) {
   let telephone = req.body.telephone;
   let email = req.body.email;
   let image = req.body.image;
-
+  
   if (firstName && lastName) {
     // Save customers
     Customer.save(dbPool, firstName, lastName, sex, customerTypeId, telephone, email, image)
